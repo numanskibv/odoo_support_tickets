@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="numanski_support.list">
+      <field name="name">numanski_support list</field>
+      <field name="model">numanski_support.numanski_support</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="numanski_support.action_window">
+      <field name="name">numanski_support window</field>
+      <field name="res_model">numanski_support.numanski_support</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="numanski_support.action_server">
+      <field name="name">numanski_support server</field>
+      <field name="model_id" ref="model_numanski_support_numanski_support"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="numanski_support" id="numanski_support.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="numanski_support.menu_1" parent="numanski_support.menu_root"/>
+    <menuitem name="Menu 2" id="numanski_support.menu_2" parent="numanski_support.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="numanski_support.menu_1_list" parent="numanski_support.menu_1"
+              action="numanski_support.action_window"/>
+    <menuitem name="Server to list" id="numanski_support" parent="numanski_support.menu_2"
+              action="numanski_support.action_server"/>
+-->
+  </data>
+</odoo>

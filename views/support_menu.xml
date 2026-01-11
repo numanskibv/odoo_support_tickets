@@ -1,0 +1,22 @@
+<odoo>
+
+    <!-- Action -->
+    <record id="action_support_ticket" model="ir.actions.act_window">
+        <field name="name">Support Tickets</field>
+        <field name="res_model">support.ticket</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <!-- Main menu -->
+    <menuitem id="menu_support_root" name="Supportdesk" sequence="10"/>
+
+    <!-- Sub menu -->
+    <menuitem
+        id="menu_support_tickets"
+        name="Tickets"
+        parent="menu_support_root"
+        action="action_support_ticket"
+        sequence="10"
+    />
+
+</odoo>

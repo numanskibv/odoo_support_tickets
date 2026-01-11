@@ -1,0 +1,119 @@
+<odoo>
+
+    <!-- list -->
+    <record id="view_support_ticket_list" model="ir.ui.view">
+        <field name="name">support.ticket.list</field>
+        <field name="model">support.ticket</field>
+        <field name="arch" type="xml">
+            <list>
+            
+                <field name="ticket_ref"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+                <field name="priority" widget="priority"/>
+                <field name="sla_deadline"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_support_ticket_form" model="ir.ui.view">
+        <field name="name">support.ticket.form</field>
+        <field name="model">support.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Support Ticket">
+                <sheet>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="new,in_progress,waiting,done"/>
+                        <h1><field name="ticket_ref"/></h1>
+                    </header>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="user_id"/>
+                    </group>
+                    <group>
+                        <field name="priority" widget="priority"/>
+                        <field name="sla_deadline"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban -->
+    <record id="view_support_ticket_kanban" model="ir.ui.view">
+        <field name="name">support.ticket.kanban</field>
+        <field name="model">support.ticket</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card"
+     t-att-class="record.is_overdue.raw_value ? 'bg-danger text-white' : ''">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <field name="partner_id"/>
+                            </div>
+                            <div>
+                                <field name="user_id"/>
+                            </div>
+                            <div>
+                                <field name="is_overdue"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <template id="portal_ticket_new" name="Create Ticket">
+    <t t-call="portal.portal_layout">
+        <div class="container mt-4">
+            <h2>Create Support Ticket</h2>
+
+            <form action="/my/tickets/create" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Subject</label>
+                    <input type="text" name="subject" class="form-control" required="required"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="5" required="required"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Priority</label>
+                    <select name="priority" class="form-select">
+                        <option value="0">Low</option>
+                        <option value="1" selected="selected">Normal</option>
+                        <option value="2">High</option>
+                        <option value="3">Urgent</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary">Submit Ticket</button>
+
+            </form>
+        </div>
+    </t>
+</template>
+
+</odoo>

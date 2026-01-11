@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Odoo logs
+*.log
